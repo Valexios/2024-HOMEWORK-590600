@@ -11,9 +11,10 @@ public class Borsatest {
 
 	 Attrezzo A= null; 
 	 Attrezzo B= new Attrezzo("aa",1);
-	 Attrezzo a= new Attrezzo("",4);
-	 Attrezzo b= new Attrezzo("",2);
-	 Borsa BO= new Borsa(5);
+	 Attrezzo a= new Attrezzo("a",9);
+	 Attrezzo b= new Attrezzo("a",2);
+	 Attrezzo c= new Attrezzo("a",3);
+	 Borsa BO= new Borsa(10);
 	 
 	    @Test 
 		public void addattrezzonull() {
@@ -29,9 +30,17 @@ public class Borsatest {
 			BO.addAttrezzo(a);
 			assertFalse(BO.addAttrezzo(b));
 		}
+		
 		@Test
 		public void removeattrezzonull() {
 			assertEquals(null,BO.removeAttrezzo(null));
+		}
+		@Test
+		public void removeattrezzodoppio() {
+			BO.addAttrezzo(b);
+			BO.addAttrezzo(c);
+			assertEquals(b,BO.removeAttrezzo(b.getNome()));
+			assertEquals(c,BO.removeAttrezzo(c.getNome()));
 		}
 		@Test
 		public void removeattrezzoesistente() {

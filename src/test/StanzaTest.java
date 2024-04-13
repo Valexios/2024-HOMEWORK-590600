@@ -38,6 +38,13 @@ public class StanzaTest {
 	public void addattrezzonull(){
 		assertFalse(S.addAttrezzo(null));
 	}
+	@Test
+	public void removeattrezzodoppio() {
+		S.addAttrezzo(b);
+		S.addAttrezzo(c);
+		assertEquals(b,S.removeAttrezzo(b.getNome()));
+		assertEquals(c,S.removeAttrezzo(c.getNome()));
+	}
 	@Test 
 	public void addattrezzi10null(){
 	S.addAttrezzo(a);

@@ -38,9 +38,12 @@ public class Borsa {
 	
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
 		Attrezzo a = null;
+		boolean continua = true;
 		for (int i= 0; i<this.numeroAttrezzi; i++)
-			if (this.attrezzi[i].getNome().equals(nomeAttrezzo))
+			if (this.attrezzi[i].getNome().equals(nomeAttrezzo)&&continua) {
 				a = attrezzi[i];
+				continua=false;
+			}
 		return a;
 	}
 	
@@ -62,15 +65,18 @@ public class Borsa {
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 		if(!this.hasAttrezzo(nomeAttrezzo))
 			return null;
+		boolean trovato = false;
+		int num=this.numeroAttrezzi;
 		Attrezzo a = this.getAttrezzo(nomeAttrezzo);
 		Attrezzo[] NewBorsa= new Attrezzo[DEFAULT_PESO_MAX_BORSA];
-		for (int i=0,k=0; i<numeroAttrezzi; i++) {
-			if(!this.attrezzi[i].getNome().equals(nomeAttrezzo)) {
+		for (int i=0,k=0; i<num; i++) {
+			if(!this.attrezzi[i].getNome().equals(nomeAttrezzo)||trovato) {
 				NewBorsa[k]=attrezzi[i];
 				k++;
 			}
 			else{
 				this.numeroAttrezzi--;
+				trovato = true;
 			}
 	    }
 		this.attrezzi=NewBorsa;	
